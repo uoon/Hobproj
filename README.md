@@ -58,6 +58,7 @@ class StartRoom(Scene):
 			inventory.add_item['Club']
 			print "A Club was added to your inventory!"
 			return 'entrance'
+			""" I am getting error 'instancemethod' object has no attribute '__getitem__'"""
 	
 		elif choice == '2':
 			inventory.add_item['Knife']
