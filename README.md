@@ -98,6 +98,9 @@ class Map(object):
 		
 		
 inventory = Inventory()
+
 a_map = Map('start_room')
+
 a_game = Engine(a_map)
+
 a_game.play()
