@@ -1,7 +1,7 @@
 # Bank-Heist
 
 class Engine(object):
-	
+	"""Game engine to cycle through play and Map()"""
 	def __init__(self, scene_map):
 		self.scene_map = scene_map
 		
@@ -18,6 +18,7 @@ class Engine(object):
 
 class Inventory(object):
 	"""Need to figure out how to add/change to dict in __init__"""
+	
 	def __init__(self):
 		self.items = {}
 	
@@ -63,7 +64,7 @@ class StartRoom(Scene):
 			
 		else:
 			print "That's not a valid choice."
-			inventory.add_item['Unarmed']
+			inventory.add_item['None']
 			return 'entrance'
 			
 			
