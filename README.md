@@ -17,8 +17,9 @@ class Engine(object):
 			
 		current_scene.enter()
 
+
 class Inventory(object): 
-"""Need to figure out how to add/change to dict from another class"""
+"""Need to figure out how to add/change to the dict in Inventory from another class such as StartRoom"""
 	
 	def __init__(self):
 		self.items = {}
@@ -34,12 +35,14 @@ class Inventory(object):
 		for item in self.items:
 			print item		
 
+
 class Scene(object): 
 	"""This class to cycle through scenes"""	
 	
 	def enter(self):
 		print "This scene is not yet configured. Subclass it and implement enter()"
 		exit()
+
 
 class StartRoom(Scene):
 	"""The first scene however I am getting a __getitem__ error when I make a choice."""
@@ -70,10 +73,14 @@ class StartRoom(Scene):
 			print "That's not a valid choice. You will go in unarmed."
 			inventory.add_item['None']
 			return 'entrance'
-			
+
+class Entrance(Scene):
+	
+	def enter(self):
+		pass
 			
 class Map(object):
-	"""Map class works with Engine class to change scenes"""
+	"""Map class works with Engine class to change scenes through methods 'next_scene' and 'opening_scene'"""
 
 	scenes = {
 	    'start_room': StartRoom(),
