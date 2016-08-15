@@ -1,7 +1,6 @@
 # Bank-Heist
 
 class Engine(object):
-	"""Game engine to cycle through play and Map()"""
 	
 	def __init__(self, scene_map):
 		self.scene_map = scene_map
