@@ -18,7 +18,7 @@ class Engine(object):
 		current_scene.enter()
 
 class Inventory(object): 
-"""Need to figure out how to add/change to dict in __init__"""
+"""Need to figure out how to add/change to dict from another class"""
 	
 	def __init__(self):
 		self.items = {}
@@ -42,7 +42,7 @@ class Scene(object):
 		exit()
 
 class StartRoom(Scene):
-	"""first scene"""
+	"""The first scene however I am getting a __getitem__ error when I make a choice."""
 
 	def enter(self):
 		print "Alright, time to gear up."
@@ -53,20 +53,21 @@ class StartRoom(Scene):
 		
 		if choice == '1':
 			inventory.add_item['Club']
+			print "A Club was added to your inventory!"
 			return 'entrance'
 	
 		elif choice == '2':
 			inventory.add_item['Knife']
-			print item, "was added to your inventory!"
+			print "A Knife was added to your inventory!"
 			return 'entrance'
 	
 		elif choice == '3':
 			inventory.add_item['Shotgun']
-			print item, "was added to your inventory!"
+			print "A Shotgun was added to your inventory!"
 			return 'entrance'
 			
 		else:
-			print "That's not a valid choice."
+			print "That's not a valid choice. You will go in unarmed."
 			inventory.add_item['None']
 			return 'entrance'
 			
