@@ -2,6 +2,7 @@
 
 class Engine(object):
 	"""Game engine to cycle through play and Map()"""
+	
 	def __init__(self, scene_map):
 		self.scene_map = scene_map
 		
@@ -16,8 +17,8 @@ class Engine(object):
 			
 		current_scene.enter()
 
-class Inventory(object):
-	"""Need to figure out how to add/change to dict in __init__"""
+class Inventory(object): 
+"""Need to figure out how to add/change to dict in __init__"""
 	
 	def __init__(self):
 		self.items = {}
@@ -34,13 +35,15 @@ class Inventory(object):
 			print item		
 
 class Scene(object): 
-  """This class to cycle through scenes"""	
+	"""This class to cycle through scenes"""	
+	
 	def enter(self):
 		print "This scene is not yet configured. Subclass it and implement enter()"
 		exit()
 
 class StartRoom(Scene):
 	"""first scene"""
+
 	def enter(self):
 		print "Alright, time to gear up."
 		print "What weapon will you like to start with?"
@@ -69,6 +72,7 @@ class StartRoom(Scene):
 			
 			
 class Map(object):
+	"""Map class works with Engine class to change scenes"""
 
 	scenes = {
 	    'start_room': StartRoom(),
