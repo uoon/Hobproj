@@ -117,6 +117,7 @@ class Entrance(Scene):
 	def enter(self):
 		print "*SKKKRRRR* The car makes a screeching halt in front of a building that stretches "
 		print "up higher than the clouds. You put on your 'Anonymous' mask and step out of the vehicle."
+		inv.remove_item('Unmasked')
 		print "You look up at the facade and see intricate placement of diamonds that spells, 'The Global Bank'."
 		print 
 		print "You see guards ordering food at a nearby bacon-wrapped hotdog stand down the street."
