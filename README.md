@@ -532,7 +532,7 @@ class Teller(Scene):
 			pass
 			
 		if choice == "4":
-			if 'Wallet' in inv.items():
+			if 'Wallet' in inv.items:
 				print "That's a really nice wallet."
 			pass
 	
