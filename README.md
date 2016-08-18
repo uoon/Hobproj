@@ -543,6 +543,7 @@ class Teller(Scene):
 				print "You see her reaching toward a switch underneathe the desk."
 				print "Time slows down."
 				print
+				inv.remove_item('Wallet')
 				print "1. While remaining silent, slowly reveal your",
 				inv.print_items()
 				print
@@ -694,7 +695,7 @@ class Teller(Scene):
 						print "You feel three needles pierce through your shoulder and a sharp jolt renders your arms immobile."
 						print "You drop to your chest and begin convulsing and foam escapes from your lips. Your eyes roll" 
 						print "backwards as you go into shock. Your mission has failed."
-						return 'death'"
+						return 'death'
 				if ini12 == '2':
 					print "You yell at the guards to get their asses in the vault and give you all the cash thats inside."
 					print "One of the guards start to walk toward the vault and swipe their card. The vault door opens."
@@ -718,21 +719,32 @@ class Teller(Scene):
 						print "escapes through your lips. Your eyes roll backwards as you go into shock. Your vision fades.."
 						return 'death'
 			if ini11 == '2':
+				print "The Security Office opens and two guards come walking your way."
+				print 
+				print "Alison: 'I'm so sorry... I had to report you. The mask you are carrying"
+				print "is illegal. My career is on the line! I hope you understand..."
+				print
+				print "Guards ask you to remove the mask and come with them as you are under arrest."
+				return 'death'
 				
-				
-		if choice == "3":
+		if choice == '3':
 			pass
 			
 		if choice == "4":
 			if 'Wallet' in inv.items:
 				print "That's a really nice Looey Viddon wallet!"
-			pass
+			else:
 	
 class SecurityRoom(Scene):
 	def enter(self):
 		if 'Unmasked' in inv.items:
 			print "You approach the Security Room unmasked."
-		pass
+		else: 
+			print "You approach the Security Room with your mask on."
+			print "A camera with red blinking lights tracks your movements toward the door."
+			print "In an instant, the door slams open and before you can even react, shots are fired"
+			print "from within the room. You feel unbearable impacts to your chest and fall unconscious."
+			return 'death'
 
 class Vault(Scene):
 	def enter(self):
@@ -750,10 +762,34 @@ class PresidentsOffice(Scene):
 	def enter(self):
 		if 'Unmasked' in inv.items:
 			print "You approach the Security Room unmasked."
-		pass
+		else: 
+			print "You approach the President's Office with your mask on."
+			print "A camera with red blinking lights tracks your movements toward the door."
+			print "Before you know what's happening, you hear a door slam open behind you."
+			print "Before you can even react, you hear gunshots from behind. Guards from the"
+			print "security room open fired. You feel jarring impacts to your back and fall"
+			print "to the ground, losing consciousness quickly."
+			return 'death'
 	
 class EscapeVan(Scene):
-	pass
+	def enter(self):
+		if '5k' in inv.items:
+			pass
+		if '10k' in inv.items:
+			pass
+		if '1m' in inv.items:
+			pass
+		if '2m' in inv.items:
+			pass
+		if '3m' in inv.items:
+			pass
+		else:
+			print "You left the bank with nothing. Clinton stares at you in disbelief."
+			print "Clinton: 'You made me risk everything for you... and you show me this??'"
+			print 
+			print "Clinton puts both hands on your cheeks and with a lightning fast twist,"
+			print "she breaks your neck. You died."
+			return 'death'
 	
 class Death(Scene):
 	def enter(self):
