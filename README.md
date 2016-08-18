@@ -26,6 +26,7 @@ class Scene(object):
 class Introduction(Scene):
 	
 	def enter(self):
+		inv.reset_items()
 		print "The year is 2021. Autonomous driving vehicles are commonplace vehicles. Tesla owns NASA, "
 		print "but they still have not released the Model 3. You find yourself in the back of a Tesla Model-"
 		print "X sitting besides someone who has long lost her glory. Robbing the Global Bank is your only "
@@ -172,8 +173,8 @@ class Entrance(Scene):
 			if hotd == '1' or 'walk' in hotd:
 				print "You take a bite of the hotdog and choke on some dirt that was not propertly cleaned"
 				print "from the bell peppers. You gasp for air and the guards take your wild movements as"
-				print "a threat. They take our their clubs and start beating you down. You suffocate and"
-				print "die of wounds and trauma to the head."
+				print "a threat. They take out their steel clubs and start beating you. You suffocate on the"
+				print "dirt and start to bleed from your skull. You die from one hard crack to the head."
 				return 'death'
 					
 			if hotd == '2' or 'give' or 'offer' in hotd:
@@ -184,7 +185,7 @@ class Entrance(Scene):
 				print "found this wallet while tending the grounds. There's no money in it, but it's a real nice wallet.'"
 				inv.add_item('Wallet')
 				print
-				print "A Leather Wallet was added to your inventory."
+				print "A Luxurious Leather Wallet was added to your inventory."
 				print
 				print "Stop wasting time. You should really head into the Bank now."
 				print '-' * 30
@@ -234,6 +235,7 @@ class Teller(Scene):
 		print "3. Attack her with your weapon."
 		print "4. Compliment her and then ask her for her phone number."
 		print '-' * 30
+		print
 		choice = raw_input("> ")
 		
 		if choice == '1':
@@ -276,6 +278,7 @@ class Teller(Scene):
 				ini2 = raw_input("> ")
 				if ini2 == '1':
 					inv.add_item('5k')
+					inv.remove_item('Wallet')
 					print "You grab the cash and frantically run toward the exit."
 					print "Sirens go off and the customers start to scream."
 					print "You try to kick open the door but it's too heavy and so you recoil backwards."
@@ -289,6 +292,7 @@ class Teller(Scene):
 					print "attempting to pick up the money you dropped, you scurry into the SUV."
 					return 'escape_van'
 				if ini2 == '2':
+					inv.remove_item('Wallet')
 					print "You demand the key to the Vault with the assumption that there is more money"
 					print "inside. Alison begins to explain that only the President has the key and starts"
 					print "to cry. The tellers start backing away from your direction and customers begin"
@@ -314,6 +318,7 @@ class Teller(Scene):
 						print "behind your escape."
 						return 'escape_van'
 					if ini3 == '2':
+						inv.remove_item('Wallet')
 						print "You point your",
 						inv.print_items()
 						print "at the guards"
@@ -343,6 +348,7 @@ class Teller(Scene):
 				print "You feel a sense of embarrassment rising up from your chest making your face feel hot."
 				print '-' * 30
 				print "1. Offer to take off your mask in exchange for her phone number."
+				inv.remove_item('Wallet')
 				print "2. Show her your",
 				inv.print_items()
 				print "and demand that she empty her register."
@@ -561,12 +567,15 @@ class Teller(Scene):
 					ini9 = raw_input("> ")
 					if ini9 == '1':
 						inv.add_item('Unmasked')
-						print "You take off your mask. You see three guards walking toward your direction."
+						print "You laugh as you see a glimmer in Alison's eyes. Are you in love? Are you willing to"
+						print "give up your plans to rob the world's largest bank for true love?"
+						print "You take off your mask and you notice that three guards walking toward your direction."
 						print "Alison hands you a folded piece of paper."
 						print '-' * 30
-						print "1. Read the piece of paper"
-						print "2. Run toward the Security Room"
+						print "1. Read the piece of paper."
+						print "2. Ignore the note and walk toward the Security Room."
 						print "3. Thank Alison and walk toward the exit."
+						print
 						print '-' * 30
 						ini10 = raw_input("> ")
 						if ini10 == '1':
@@ -575,19 +584,22 @@ class Teller(Scene):
 							print "nude photos of Donald Trump on the internet. Do you live under a rock?"
 							print "You feel something grab you by your wrist."
 							print "'You're under arrest, scum.'"
-							return deth
+							return 'death'
 						if ini10 == '2':
+							print "Acknowledging the presence of danger, you realize that you should get moving."
+							print "You leave the teller, circle around a line of customers, and then"
 							print "You make a break toward the Security Room."
-							return security_room
+							return 'security_room'
 						if ini10 == '3':
 							print "You wink at Alison and turn around toward the exit. The guards start "
 							print "to pick up their pace to a slight jog. You run toward the exit and leave"
 							print "the bank and you see the SUV parked waiting for you. You get in the van and leave."
-							print "You open the folded note and it reads:"
+							print 
+							print "While in the van, You open the folded note and it reads:"
 							print "'Sike! I don't affiliate with criminals. That mask is illegal since the group"
 							print "'Anonymous' leaked nude photos of Donald Trump on the internet. Do you live under"
-							print "a rock?' You feel a wave of embarassment and regret fill your chest."
-							return escape_van
+							print "a rock?' You feel a wave of embarassment and the feeling of regret fills your chest."
+							return 'escape_van'
 					
 				if ini8 == '2':
 					print "You blurt, 'OK, calm down. I'm just playing around. Can't a guy joke with'"
@@ -596,6 +608,117 @@ class Teller(Scene):
 					print "You reach in and grab her hand. You feel your",
 					inv.print_items()
 					print "slip out of your pocket."
+		
+		if choice == '2':
+			inv.remove_item('Wallet')
+			print "Time is of the essence. The time to act is now."
+			print "You tell Alison, 'This is a fuckin' heist. Give me all the money in the register.'"
+			print 
+			print "For a brief moment, Alison looks at you confused. Her senses return and she calmly looks"
+			print "to her right and left, then looks back to you."
+			print "Alison: 'Are you sure you want to do this?'"
+			print 
+			print "1. Reveal your",
+			inv.print_items()
+			print "and point it toward Alison."
+			print "2. 'Ok, you got me. I'm just kidding!'"
+			ini11 = raw_input("> ")
+			if ini11 == '1':
+				print "You point your",
+				inv.print_items()
+				print "at Alison. She gasps loudly."
+				print "Everyone in the room looks toward your direction. Shit. The Security Room door opens"
+				print "and three guards come running out with guns drawn."
+				print 
+				print "You reach into the window and grab Alison's arm and press your weapon on her forehead."
+				print "'I WILL KILL HER IF ANYONE COMES ANY CLOSER."
+				print "The Guards stop in their tracks."
+				print 
+				print "Guard: Calm down. What do you want?"
+				print 
+				print '-' * 30
+				print "1. Tell the guards to drop their handguns and move to the side of the lobby."
+				print "2. Demand the guards to go into the Vault and empty out all the inventory in a bag."
+				ini12 = raw_input("> ")
+				print '-' * 30
+				if ini12 == '1':
+					print "You yell, 'Drop the fuckin' weapons and move to the side of the room. NOW.'"
+					print 
+					print "The guards hesitate and then drop their guns slowly. They back away toward a far wall."
+					print "Everyone is staring at you."
+					print
+					print '-' * 30
+					print "1. Ask for the Vault key."
+					print "2. Let go of Alison's hand and try to pick up one of the handguns dropped by the guards."
+					ini13 = raw_input("> ")
+					print '-' * 30
+					if ini13 == '1':
+						print "You yell out, 'Give me the damn vault key or this innocent girl dies today.'"
+						print "The room is silent."
+						print "The guards are standing against the wall with their hands in the air."
+						print '-' * 30
+						print "1. Demand for the Vault key again."
+						print "2. Let go of Alison's hand and leap toward one of the handguns left on the floor."
+						print "3. Hit Alison."
+						ini14 = raw_input("> ")
+						if ini14 == '1':
+							print "You yell even louder, 'GIVE ME THE FUCKING KEY OR SHE DIES IN 5... 4..."
+							print "One of the guards give in."
+							print "Guard: 'OK OK here take my key. Just don't hurt her'"
+							print "You drag Alison out of the teller window which is just big enough to pull her through."
+							print "You walk with Alison toward the guard and take a card from his hand that reads Vault Key."
+							inv.add_item('VaultKey')
+							print 
+							print '-' * 30
+							print "1. With the key and Alison, head into the Vault."
+							print "2. Let go of Alison's hand and walk into the Vault."
+							ini15 = raw_input("> ")
+							if ini15 == '1':
+								print "You walk backwards toward the Vault holding Alison in front of you as a hostage."
+								print "You let go of Alison and she runs out the bank. As you realize you have limited time,"
+								print "you turn toward the vault."
+								return 'vault'
+							if ini15 == '2':
+								print "You let go of Alison's hand and run toward the Vault. One of the guards pulls out a"
+								print "taser and shoots you with it. You feel three needles pierce through your back and a"
+								print "sharp jolt renders your legs immobile. You drop to your knees and begin convulsing"
+								print "and foam escapes your lips. Your eyes roll backwards as you go into shock. Your mission"
+								print "has failed."
+								return 'death'
+					if ini13 =='2':
+						print "You let go of Alison's hand and jump to pick up one of the loaded handguns that"
+						print "the guards dropped on the floor. Your jump isn't far enough so you have to crawl"
+						print "an additional step toward the gun. Clumsy move. Amidst the scrambling, one of the"
+						print "guards take out a small taser from their vest and shoot at you."
+						print 
+						print "You feel three needles pierce through your shoulder and a sharp jolt renders your arms immobile."
+						print "You drop to your chest and begin convulsing and foam escapes from your lips. Your eyes roll" 
+						print "backwards as you go into shock. Your mission has failed."
+						return 'death'"
+				if ini12 == '2':
+					print "You yell at the guards to get their asses in the vault and give you all the cash thats inside."
+					print "One of the guards start to walk toward the vault and swipe their card. The vault door opens."
+					print
+					print "The guard enters the vault momentarily and comes out with two bags of cash worth $1M each."
+					print "He throws each bag of cash on the ground."
+					print '-' * 30
+					print "1. Take one bag and run out the door."
+					print "2. Take both bags and run out the door."
+					ini16 = raw_input("> ")
+					if ini16 == '1':
+						print "You let go of Alison's hand and run toward the bags of cash."
+						print "As you try to pick up one of the bags, the Guard does a sweet jumping roundhouse kick"
+						print "and slams you on the head. You drop to the ground with a broken neck."
+						return 'death'
+					if ini16 == '2':
+						print "You let go of Alison's hand and run toward the bags of cash."
+						print "You drop your weapon as you try to pick up the two bags of cash and the Guard pulls out"
+						print "a taser and shoots you in the chest. You feel three needles pierce your nipples and neck."
+						print "A sharp jolt renders your legs immobile. You drop to your knees and begin convulsing. Foam"
+						print "escapes through your lips. Your eyes roll backwards as you go into shock. Your vision fades.."
+						return 'death'
+			if ini11 == '2':
+				
 				
 		if choice == "3":
 			pass
@@ -612,7 +735,16 @@ class SecurityRoom(Scene):
 		pass
 
 class Vault(Scene):
-	pass
+	def enter(self):
+		print "You made it in front of the Vault. The only thing between you and riches is a gate that"
+		print "is controlled by a key machine."
+		print
+		if 'VaultKey' in inv.items:
+			inv.reset_items()
+			print "Approaching the key machine, you slide the Vault Key in the electronic receptacle."
+			print "The machine beeps and the door opens leading into the Vault. In the vault, there lies"
+			print "$20M in cash and a small box with a key hole."
+			
 	
 class PresidentsOffice(Scene):
 	def enter(self):
@@ -627,8 +759,8 @@ class Death(Scene):
 	def enter(self):
 		print "You lose the game. Try again."
 		deth = raw_input("Type 'retry' to start over: ")
-		inv.remove_items()
-		if 'retry' or 'Retry' in deth:
+		inv.reset_items()
+		if 'retry' in deth:
 			return 'intro'
 		else:
 			exit()
