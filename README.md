@@ -559,7 +559,7 @@ class Teller(Scene):
 					print "1. Take off your mask. You don't need money, you just need love."
 					print "2. "
 					ini9 = raw_input("> ")
-					if ini 9 == '1':
+					if ini9 == '1':
 						inv.add_item('Unmasked')
 						print "You take off your mask. You see three guards walking toward your direction."
 						print "Alison hands you a folded piece of paper."
