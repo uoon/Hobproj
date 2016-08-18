@@ -270,8 +270,8 @@ class Teller(Scene):
 				print '-' * 30
 				print "1. Take the cash and book it toward the exit."
 				print "2. Ask her for the key to the Vault."
-				print "3. Run toward the Security Room."
-				print "4. Run toward the President's Office"
+				print "3. Forget the cash and run toward the Security Room."
+				print "4. Forget the cash and run toward the President's Office"
 				print '-' * 30
 				ini2 = raw_input("> ")
 				if ini2 == '1':
@@ -351,16 +351,17 @@ class Teller(Scene):
 				print '-' * 30
 				ini4 = raw_input("> ")
 				if ini4 == '1':
-					print "You charismatically pull off a flirtatious way to offer to take the mask off in"
+					print "You try to pull off a friendly flirtatious offer to take the mask off in"
 					print "exchange for her phone number. Alison is taken aback by the thought that this"
 					print "entire fiasco was done just to get her number. You can see blood rushing into "
 					print "her cheeks. She turns red."
 					print
-					print "Alison: 'My gosh. Although.. um.. I think that's very brave of you, I can't "
-					print "give you my number because I'm afraid of what will happen next.'"
+					print "Alison: 'My gosh. Although.. um.. I think that's very brave of you, but I can't "
+					print "just give you my number. The mask you're wearing is illegal and I'm afraid of what"
+					print "will happen next.'"
 					print "The Security Office opens and two guards come walking your way."
 					print 
-					print "Alison: 'I'm so sorry... I had to."
+					print "Alison: 'I'm so sorry... I had to report you. My career is on the line! Sorry..."
 					print
 					print "Guards ask you to remove the mask and come with them as you are under arrest."
 					return 'death'
@@ -527,13 +528,81 @@ class Teller(Scene):
 					if ini7 == '2':
 						print "You walk over to the President's Office."
 						return 'presidents_office'
-						
+			
+			if ini == '3':
+				print "You stand there silently as Alison appears to get increasing uncomfortable."
+				print
+				print "Alison: Ok fine. Just don't say anything, will you? I'm going to call security."
+				print
+				print "You see her reaching toward a switch underneathe the desk."
+				print "Time slows down."
+				print
+				print "1. While remaining silent, slowly reveal your",
+				inv.print_items()
+				print
+				print "2. Give in to the pressure and respond, 'Ok you got me. Don't report me.'"
+				print "3. Reach in through the teller window and grab Alison's hand."
+				ini8 = raw_input("> ")
+				if ini8 == '1':
+					print "Reaching into your jacket, you pull out your", 
+					inv.print_items(),
+					print "and slowly raise it above the counter."
+					print "Alison's eyes widen in surprise."
+					print 
+					print "Alison: 'Why would anyone bring a",
+					inv.print_items(),
+					print "into a bank? You're fierce. First I thought your mask was a bit much."
+					print "But now I just want to hear all about you. Ask me out. Now. Tonight."
+					print "I get off in half an hour.'"
+					print "Alison smiles at you."
+					print
+					print "1. Take off your mask. You don't need money, you just need love."
+					print "2. "
+					ini9 = raw_input("> ")
+					if ini 9 == '1':
+						inv.add_item('Unmasked')
+						print "You take off your mask. You see three guards walking toward your direction."
+						print "Alison hands you a folded piece of paper."
+						print '-' * 30
+						print "1. Read the piece of paper"
+						print "2. Run toward the Security Room"
+						print "3. Thank Alison and walk toward the exit."
+						print '-' * 30
+						ini10 = raw_input("> ")
+						if ini10 == '1':
+							print "You open up the folded note and it reads 'Sike! I don't affiliate"
+							print "with criminals. That mask is illegal since the group 'Anonymous' leaked"
+							print "nude photos of Donald Trump on the internet. Do you live under a rock?"
+							print "You feel something grab you by your wrist."
+							print "'You're under arrest, scum.'"
+							return deth
+						if ini10 == '2':
+							print "You make a break toward the Security Room."
+							return security_room
+						if ini10 == '3':
+							print "You wink at Alison and turn around toward the exit. The guards start "
+							print "to pick up their pace to a slight jog. You run toward the exit and leave"
+							print "the bank and you see the SUV parked waiting for you. You get in the van and leave."
+							print "You open the folded note and it reads:"
+							print "'Sike! I don't affiliate with criminals. That mask is illegal since the group"
+							print "'Anonymous' leaked nude photos of Donald Trump on the internet. Do you live under"
+							print "a rock?' You feel a wave of embarassment and regret fill your chest."
+							return escape_van
+					
+				if ini8 == '2':
+					print "You blurt, 'OK, calm down. I'm just playing around. Can't a guy joke with'"
+					print "a pretty girl?'"
+				if ini8 == '3':
+					print "You reach in and grab her hand. You feel your",
+					inv.print_items()
+					print "slip out of your pocket."
+				
 		if choice == "3":
 			pass
 			
 		if choice == "4":
 			if 'Wallet' in inv.items:
-				print "That's a really nice wallet."
+				print "That's a really nice Looey Viddon wallet!"
 			pass
 	
 class SecurityRoom(Scene):
@@ -558,6 +627,7 @@ class Death(Scene):
 	def enter(self):
 		print "You lose the game. Try again."
 		deth = raw_input("Type 'retry' to start over: ")
+		inv.remove_items()
 		if 'retry' or 'Retry' in deth:
 			return 'intro'
 		else:
