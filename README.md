@@ -1721,15 +1721,20 @@ class EscapeVan(Scene):
 		if '20m' in inv.items:
 			pass
 		if '30m' in inv.items:
-			pass
+			return 'victory'
 		else:
 			print "You left the bank with nothing. Clinton stares at you in disbelief."
 			print "Clinton: 'You made me risk everything for you... and you show me this??'"
 			print 
 			print "Clinton puts both hands on your cheeks and with a lightning fast twist,"
-			print "she breaks your neck. You died."
+			print "she breaks your neck. You survive but you are forever crippled.."
 			return 'death'
-	
+
+class Victory(Scene):
+	def enter(self):
+		print "You win the game. Good job. Chris will buy you a yummy dinner. With promise."
+		exit()
+			
 class Death(Scene):
 	def enter(self):
 		print "You lose the game. Try again."
@@ -1751,7 +1756,8 @@ class Map(object):
 	    'vault': Vault(),
 	    'presidents_office': PresidentsOffice(),
 	    'escape_van': EscapeVan(),
-		'death': Death()
+		'death': Death(),
+		'victory': Victory()
 	    }
 
 	def __init__(self, start_scene):
